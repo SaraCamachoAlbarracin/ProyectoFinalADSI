@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-ago-2017 18:58:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Venta" table="venta" catalog="proyecto" optimistic-lock="version">
+        <id name="idVenta" type="java.lang.Integer">
+            <column name="idVenta" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="automovil" class="Modelos.Automovil" fetch="select">
+            <column name="Automovil" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trabajador" class="Modelos.Trabajador" fetch="select">
+            <column name="Trabajador" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="Modelos.Usuario" fetch="select">
+            <column name="Usuario" not-null="true" />
+        </many-to-one>
+        <property name="descuento" type="string">
+            <column name="Descuento" length="3" not-null="true" />
+        </property>
+        <property name="total" type="double">
+            <column name="Total" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" not-null="true" />
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="FechaEntrega" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

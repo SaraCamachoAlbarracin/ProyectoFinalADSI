@@ -1,0 +1,85 @@
+<?xml version="1.0"?> 
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-ago-2017 18:58:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Automovil" table="automovil" catalog="proyecto" optimistic-lock="version">
+        <id name="idAutomovil" type="java.lang.Integer">
+            <column name="idAutomovil" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="Modelos.Usuario" fetch="select">
+            <column name="Usuario" not-null="true" />
+        </many-to-one>
+        <property name="fechaEntrada" type="date">
+            <column name="FechaEntrada" length="10" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="10" not-null="true" />
+        </property>
+        <property name="placa" type="string">
+            <column name="Placa" length="7" not-null="true" />
+        </property>
+        <property name="color" type="string">
+            <column name="Color" length="15" not-null="true" />
+        </property>
+        <property name="modelo" type="int">
+            <column name="Modelo" not-null="true" />
+        </property>
+        <property name="marca" type="string">
+            <column name="Marca" length="25" not-null="true" />
+        </property>
+        <property name="kilometraje" type="string">
+            <column name="Kilometraje" length="20" not-null="true" />
+        </property>
+        <property name="ciudad" type="string">
+            <column name="Ciudad" length="25" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" not-null="true" />
+        </property>
+        <property name="seguro" type="string">
+            <column name="Seguro" not-null="true" />
+        </property>
+        <property name="soat" type="string">
+            <column name="Soat" not-null="true" />
+        </property>
+        <property name="impuestos" type="string">
+            <column name="Impuestos" length="9" not-null="true" />
+        </property>
+        <property name="valor" type="double">
+            <column name="Valor" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="foto" type="string">
+            <column name="Foto" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="8" not-null="true" />
+        </property>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Automovil" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Compra" />
+        </set>
+        <set name="tiempos" table="tiempo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Automovil" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Tiempo" />
+        </set>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Automovil" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Venta" />
+        </set>
+        <set name="apartars" table="apartar" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Automovil" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Apartar" />
+        </set>
+    </class>
+</hibernate-mapping>
